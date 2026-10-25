@@ -13,3 +13,6 @@ model/
 *.safetensors
 *.bin
 *.pt
+
+# private notes, not for the public repo
+receipt-ml-project-brief.md
