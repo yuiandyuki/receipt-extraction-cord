@@ -1,0 +1,10 @@
+torch==2.14.1
+transformers==5.20.2
+datasets==4.8.5
+accelerate==1.15.0
+seqeval==1.2.2
+numpy==2.4.6
+pillow==12.3.0
+fastapi==0.162.0
+uvicorn==0.54.0
+python-multipart==0.0.32
