@@ -1,0 +1,28 @@
+{
+  "field": "total.total_price",
+  "note": "scores only the total.total_price field",
+  "train": {
+    "precision": 0.94,
+    "recall": 0.9038461538461539,
+    "f1": 0.9215686274509803,
+    "tp": 705,
+    "fp": 45,
+    "fn": 75
+  },
+  "validation": {
+    "precision": 0.9381443298969072,
+    "recall": 0.9285714285714286,
+    "f1": 0.9333333333333333,
+    "tp": 91,
+    "fp": 6,
+    "fn": 7
+  },
+  "test": {
+    "precision": 0.9139784946236559,
+    "recall": 0.8947368421052632,
+    "f1": 0.9042553191489362,
+    "tp": 85,
+    "fp": 8,
+    "fn": 10
+  }
+}

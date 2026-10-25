@@ -63,7 +63,7 @@ def main():
     for path in sorted((r / "metrics").glob("*_seed*.json")):
         m = json.loads(path.read_text())
         print(
-            f"| {m['run']} | {m['machine']['device']} | {m['train_seconds'] / 60:.1f} min | {m['best_epoch']} | "
+            f"| {m['run']} | {m['machine']['device']} | {m['train_seconds'] / 60:.1f} min | {m['best_epoch']:.0f} | "
             f"{m['validation']['micro']['f1']:.4f} | {m['test']['micro']['f1']:.4f} |"
         )
 
