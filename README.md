@@ -239,12 +239,27 @@ Output with the layout model on `examples/` (CORD validation receipt 0, about 0.
 
 ### Getting `model/`
 
-Weights are not in git. Retrain, then copy the run with the better **validation** score (here the layout model):
+Weights are not in git. Either option gives the layout model used above, which had the better **validation** score.
 
-```bash
-python -m receipt.train --model layout --seed 42
-cp -r runs/layout_seed42/best model
-```
+1. Download it from the [v0.1.0 release](https://github.com/yuiandyuki/receipt-extraction-cord/releases/tag/v0.1.0)
+   (468 MB, SHA-256 `b4caf87ca9eae5e4745d45ced11192bf395b10a67f48e76df4432cd9e816b06a`):
+
+   ```bash
+   gh release download v0.1.0 -R yuiandyuki/receipt-extraction-cord -p 'model-*.zip'
+   unzip model-layoutlmv3-seed42.zip -d model
+   ```
+
+   Without the GitHub CLI:
+   `curl -LO https://github.com/yuiandyuki/receipt-extraction-cord/releases/download/v0.1.0/model-layoutlmv3-seed42.zip`
+
+2. Or retrain it:
+
+   ```bash
+   python -m receipt.train --model layout --seed 42
+   cp -r runs/layout_seed42/best model
+   ```
+
+The released weights are a derivative of LayoutLMv3 and are **CC-BY-NC-SA 4.0: non-commercial use only** (see Licenses).
 
 ## Repository layout
 
@@ -262,5 +277,6 @@ docs/          error-example image (crop of CORD test receipt 9)
 
 - **Data**: CORD-v2, CC-BY-4.0 — Park et al., *CORD: A Consolidated Receipt Dataset for Post-OCR Parsing*, Document
   Intelligence Workshop at NeurIPS 2019. `examples/`, `docs/` and `results/predictions/` contain CORD words and images.
-- **LayoutLMv3 weights are CC-BY-NC-SA 4.0 (non-commercial)**. The fine-tuned layout model therefore may not be used
-  commercially; a product would need a commercially licensed layout model. XLM-RoBERTa is MIT.
+- **LayoutLMv3 weights are CC-BY-NC-SA 4.0 (non-commercial)**. The fine-tuned layout model, including the weights in the
+  v0.1.0 release, therefore may not be used commercially and is shared under the same license; a product would need a
+  commercially licensed layout model. XLM-RoBERTa is MIT.
