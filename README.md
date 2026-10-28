@@ -48,20 +48,18 @@ test entities, so their F1 can swing a lot from one or two mistakes.
 
 ### What the results say
 
-<!-- TODO(Sihao): draft written by Claude Code; rewrite this section in your own words. -->
-
-- **Both models beat the rule on the total by a clear margin** (+0.06 to +0.07 F1). The intervals exclude 0 and p < 0.01.
-  The rule is already strong (0.90): in this word order the amount usually comes right after the `TOTAL` word.
-- **The layout model scored higher overall (0.949 vs 0.942), but this test set cannot tell them apart.** The difference
-  is +0.008, its 95% CI [−0.004, +0.021] contains 0, and p = 0.21. That is "no evidence of a difference", not
-  "evidence of no difference".
-- The fields where layout looked better are the ones where **column position carries the meaning**: unit price vs line
-  price (0.933 vs 0.859 on `menu.unitprice`) and subtotal. These per-field gaps were not tested and rest on 66–67 test entities each.
-- **On the total, the two models differ on only 2 of the 100 receipts.** Both are text-model false positives. The
-  bootstrap CI of the difference starts at exactly 0, because layout is never worse on any resample. But a
-  difference that comes from 2 receipts is weak evidence, and the permutation test says so (p = 0.49).
-- The layout model was still improving at the last epoch (best epoch = 15), so with the same 15-epoch budget it may be
-  slightly under-trained. Giving both models more epochs is a fair next experiment.
+- Both models beat the regex rule on the total, by about 0.06–0.07 F1 (CIs exclude 0, p < 0.01). The rule itself
+  is not bad at 0.90, because in CORD's word order the amount usually comes right after the `TOTAL` word.
+- Overall the layout model scored a bit higher (0.949 vs 0.942), but with 100 test receipts I can't call that a real
+  difference: +0.008, CI [−0.004, +0.021], p = 0.21. I read this as "no evidence of a difference", not as
+  "no difference".
+- Layout looked better mainly where column position matters: unit price vs line price (`menu.unitprice` 0.933 vs
+  0.859) and subtotal. I didn't test these per-field gaps, and each rests on only 66–67 test entities.
+- On the total, the two models disagree on only 2 of the 100 receipts, both false positives from the text model.
+  The bootstrap CI of the difference starts at exactly 0 because layout is never worse in any resample, but 2
+  receipts is thin evidence, and the permutation test agrees (p = 0.49).
+- The layout model's best epoch was the last one (15), so it may be slightly under-trained with the shared budget.
+  Training both models longer is the next experiment I'd run.
 
 ### An error example
 
